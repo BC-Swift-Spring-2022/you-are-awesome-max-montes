@@ -6,14 +6,16 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     
-    var imageNumber = 0
-    var messageNumber = 0
-    let totalNumberOfImages = 9
+    var imageNumber = -1
+    var messageNumber = -1
+    let totalNumberOfImages = 3
+    var audioPlayer: AVAudioPlayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,38 +25,32 @@ class ViewController: UIViewController {
     @IBAction func messageButtonPressed(_ sender: UIButton) {
         let messages = ["You Are Awesome!", "You Are Great!", "You Are Fantastic", "Fabulous? That's You!"]
         
-        messageLabel.text = messages[Int.random(in: 0...messages.count-1)]
-        imageView.image = UIImage(named: "image\(Int.random(in: 0...totalNumberOfImages))")
+        var newMessageNumber: Int
+        repeat  {
+            newMessageNumber = Int.random(in: 0...messages.count-1)
+        } while messageNumber == newMessageNumber
+        messageNumber = newMessageNumber
+        messageLabel.text = messages[messageNumber]
         
-//        messageLabel.text = messages[messageNumber]
-//        messageNumber += 1
-//        if messageNumber == messages.count {
-//            messageNumber = 0
-//        }
-        
-        let imageName = "image\(imageNumber)"
-        if (imageNumber == 4) {
-            imageNumber = 1
+        var newImageNumber: Int
+        repeat {
+            newImageNumber = Int.random(in: 1...totalNumberOfImages)
+        } while imageNumber == newImageNumber
+        imageNumber = newImageNumber
+        imageView.image = UIImage(named: "image\(imageNumber)")
+                    
+        if let sound = NSDataAsset(name: "sound0") {
+            do {
+                try audioPlayer = AVAudioPlayer(data: sound.data)
+                audioPlayer.play()
+            } catch {
+                print("😎ERROR: \(error.localizedDescription)could not initialize audio player")
+            }
+
+        } else {
+            print("😎ERROR: could not read data from the file sound0")
         }
-        imageView.image = UIImage(named: imageName)
-        imageNumber = imageNumber + 1;
-//        let awesomeMessage = "You Are Awesome!"
-//        let greatMessage = "You Are Great!"
-//        let bombMessage = "You Are Da Bomb!"
-//
-//
-//        if messageLabel.text == awesomeMessage {
-//            messageLabel.text = greatMessage
-//            imageView.image = UIImage(named: "waterfall")
-//        }
-//        else if messageLabel.text == bombMessage {
-//            messageLabel.text = awesomeMessage
-//            imageView.image = UIImage(named: "tetons")
-//        }
-//        else {
-//            messageLabel.text = bombMessage
-//            imageView.image = UIImage(named: "volcano")
-//        }
+
     }
 }
     
