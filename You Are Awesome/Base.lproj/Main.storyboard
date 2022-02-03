@@ -19,6 +19,18 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rXv-IA-UrD">
                                 <rect key="frame" x="0.0" y="44" width="390" height="766"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="volcano" translatesAutoresizingMaskIntoConstraints="NO" id="D12-Vc-v3C">
+                                        <rect key="frame" x="8" y="226" width="374" height="511"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i3j-7e-KC3">
+                                        <rect key="frame" x="258" y="133" width="122" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Show message"/>
+                                        <connections>
+                                            <action selector="messageButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y5o-EU-fYg"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10i-H3-QgD">
                                         <rect key="frame" x="8" y="8" width="374" height="80"/>
                                         <constraints>
@@ -28,23 +40,25 @@
                                         <color key="textColor" red="0.50196081400000003" green="0.92156863209999995" blue="0.47843140360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="volcano" translatesAutoresizingMaskIntoConstraints="NO" id="D12-Vc-v3C">
-                                        <rect key="frame" x="8" y="96" width="374" height="1406"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i3j-7e-KC3">
-                                        <rect key="frame" x="132" y="112" width="126" height="105"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Show message"/>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P3R-dh-uuA">
+                                        <rect key="frame" x="109" y="133" width="49" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
-                                            <action selector="messageButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y5o-EU-fYg"/>
+                                            <action selector="playSoundToggled:" destination="BYZ-38-t0r" eventType="valueChanged" id="AXU-V2-ejw"/>
                                         </connections>
-                                    </button>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Play sound: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9u-II-xGe">
+                                        <rect key="frame" x="8" y="138" width="93" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="10i-H3-QgD" firstAttribute="leading" secondItem="rXv-IA-UrD" secondAttribute="leading" constant="8" id="0Hg-yS-aPR"/>
-                                    <constraint firstItem="D12-Vc-v3C" firstAttribute="top" secondItem="10i-H3-QgD" secondAttribute="bottom" constant="8" id="4R2-IK-veM"/>
+                                    <constraint firstItem="D12-Vc-v3C" firstAttribute="top" secondItem="10i-H3-QgD" secondAttribute="bottom" constant="138" id="4R2-IK-veM"/>
                                     <constraint firstAttribute="trailing" secondItem="10i-H3-QgD" secondAttribute="trailing" constant="8" id="Ncy-aV-Jd6"/>
                                     <constraint firstItem="10i-H3-QgD" firstAttribute="top" secondItem="rXv-IA-UrD" secondAttribute="top" constant="8" id="O6n-Qg-umq"/>
                                 </constraints>
@@ -62,6 +76,7 @@
                     <connections>
                         <outlet property="imageView" destination="D12-Vc-v3C" id="fPD-Dq-Ghw"/>
                         <outlet property="messageLabel" destination="10i-H3-QgD" id="5S0-Oi-tao"/>
+                        <outlet property="playSoundSwitched" destination="P3R-dh-uuA" id="sZM-Qo-3CG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
